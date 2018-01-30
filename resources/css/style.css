@@ -50,3 +50,37 @@ input:focus {
   background-color: rgb(104, 0, 255);
   color: rgb(255, 255, 255);
 }
+
+.song {
+  background-color: rgb(204, 204, 204);
+  font-size: 1rem;
+  color: rgb(74, 74, 74);
+  display: flex;
+}
+
+.song div {
+  display: flex;
+  align-items: center;
+}
+
+.song:hover {
+  color: rgb(239, 237, 242);
+}
+
+.song a {
+  text-decoration: none;
+}
+
+#play-button a {
+  display: flex;
+  align-items: center;
+}
+
+.song .fa-play-circle-o {
+  color: #ff00ab;
+}
+
+.song .fa-play-circle-o:hover {
+  color: #ff66cc;
+  cursor: pointer;
+}
