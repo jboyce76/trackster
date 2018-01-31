@@ -3,12 +3,31 @@ var Trackster = {};
 $(document).ready(function() {
 
   const API_KEY = '8ed60dd9077857e18a04b6549034e103';
+
   $('#search-button').click(function() {
     Trackster.searchTracksByTitle($('#search-input').val());
+    addStyle();
   });
-//  $('#play-button').click(function() {
-//    console.log('https://youtu.be/eI_O5_tJ1hA');
-//  });
+
+  $('#search-input').keydown(function(e) {
+    var key = e.which;
+//    console.log(key);
+    if (key == 13) {
+      Trackster.searchTracksByTitle($('#search-input').val());
+    }
+  });
+
+function addStyle() {
+  var element = document.getElementById("title-text");
+//  console.log(element);
+  element.classList.add("style");
+}
+
+function removeStyle() {
+  var element = document.getElementById("title-text");
+//  console.log(element);
+  element.classList.remove("style");
+}
 
 /*
   Given an array of track data, create the HTML for a Bootstrap row for each.
@@ -28,13 +47,13 @@ Trackster.renderTracks = function(tracks) {
     '      <i class="fa fa-play-circle-o fa-2x"></i>' +
     '    </a>' +
     '  </div>' +
-    '  <a class="col-xs-4 song-title" href="#">' + track.name + '</a>' +
-    '  <a class="col-xs-2 song-artist" href="#">' + track.artist + '</a>' +
-    '  <a class="col-xs-2 song-art" href="#"><img src="' + mediumAlbumArt + '"/></a>' +
-    '  <a class="col-xs-2 song-listen" href="#">' + track.listeners + '</a>' +
+    '  <div class="col-xs-4 song-title" href="#">' + track.name + '</div>' +
+    '  <div class="col-xs-2 song-artist" href="#">' + track.artist + '</div>' +
+    '  <div class="col-xs-2 song-art" href="#"><img src="' + mediumAlbumArt + '"/></div>' +
+    '  <div class="col-xs-2 song-listen" href="#">' + track.listeners + '</div>' +
     '</div>';
     $songList.append(songHTML);
-    console.log(track);
+//    console.log(track);
   }
 };
 
@@ -47,6 +66,7 @@ Trackster.searchTracksByTitle = function(title) {
     url: 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + title + '&api_key=' + API_KEY + '&format=json',
     success: function(response) {
       Trackster.renderTracks(response.results.trackmatches.track);
+      removeStyle();
     }
   });
 };

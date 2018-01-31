@@ -24,6 +24,17 @@ body {
   color: #ff00ab;
 }
 
+@keyframes text {
+  from {background-color: white}
+  to {background-color: purple}
+}
+
+.style {
+  animation-name: text;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
 input:focus {
   outline: none;
 }
@@ -52,10 +63,11 @@ input:focus {
 }
 
 .song {
-  background-color: rgb(204, 204, 204);
+  background-color: rgb(239, 237, 242);
   font-size: 1rem;
   color: rgb(74, 74, 74);
   display: flex;
+  padding: 0.5rem;
 }
 
 .song div {
@@ -64,7 +76,7 @@ input:focus {
 }
 
 .song:hover {
-  color: rgb(239, 237, 242);
+  background-color: rgb(204, 204, 204);
 }
 
 .song a {
