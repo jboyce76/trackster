@@ -60,6 +60,7 @@ input:focus {
 .title {
   background-color: rgb(104, 0, 255);
   color: rgb(255, 255, 255);
+  padding: 0 0.5rem 0 0.5rem;
 }
 
 .song {
@@ -68,6 +69,7 @@ input:focus {
   color: rgb(74, 74, 74);
   display: flex;
   padding: 0.5rem;
+  line-height: 1rem;
 }
 
 .song div {

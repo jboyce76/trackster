@@ -6,6 +6,7 @@ $(document).ready(function() {
 
   $('#search-button').click(function() {
     Trackster.searchTracksByTitle($('#search-input').val());
+//    $('#title-text').addClass('.style');
     addStyle();
   });
 
@@ -28,6 +29,11 @@ function removeStyle() {
 //  console.log(element);
   element.classList.remove("style");
 }
+
+$('.col-hdr').click(function() {
+  $(this)
+});
+
 
 /*
   Given an array of track data, create the HTML for a Bootstrap row for each.
@@ -66,6 +72,7 @@ Trackster.searchTracksByTitle = function(title) {
     url: 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + title + '&api_key=' + API_KEY + '&format=json',
     success: function(response) {
       Trackster.renderTracks(response.results.trackmatches.track);
+//      $('#title-text').removeClass('.style');
       removeStyle();
     }
   });
