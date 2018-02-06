@@ -3,6 +3,7 @@ var Trackster = {};
 $(document).ready(function() {
 
   const API_KEY = '8ed60dd9077857e18a04b6549034e103';
+  var currentSort = 'asc';
 
   $('#search-button').click(function() {
     Trackster.searchTracksByTitle($('#search-input').val());
@@ -31,7 +32,24 @@ function removeStyle() {
 }
 
 $('.col-hdr').click(function() {
-  $(this)
+  var asc = currentSort === 'asc';
+
+  //grab the class name of the clicked header div
+  var currentSortColumn = $(this).attr('id');
+  console.log(currentSortColumn);
+  //grab the outer div containing the rows of data
+  var outerDiv = $('#song-List');
+  console.log(outerDiv);
+  outerDiv.find('div.row').sort(function(a, b) {
+    if (asc) {
+        return $('div.' + currentSortColumn, a).data("value").toString()
+            .localeCompare($('div.' + currentSortColumn, b).data("value").toString(), undefined, {numeric: true, sensitivity: 'base'});
+    } else {
+        return $('div.' + currentSortColumn, b).data("value").toString()
+            .localeCompare($('div.' + currentSortColumn, a).data("value").toString(), undefined, {numeric: true, sensitivity: 'base'});
+    }
+  }).appendTo(outerDiv);
+
 });
 
 
