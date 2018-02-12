@@ -3,7 +3,7 @@ var Trackster = {};
 $(document).ready(function() {
 
   const API_KEY = '8ed60dd9077857e18a04b6549034e103';
-  var currentSort = 'asc';
+  var currentSort = 'desc';
 
   $('#search-button').click(function() {
     Trackster.searchTracksByTitle($('#search-input').val());
@@ -32,14 +32,21 @@ function removeStyle() {
 }
 
 $('.col-hdr').click(function() {
-  var asc = currentSort === 'asc';
-
+  var asc = currentSort;
+  if (asc) {
+    asc = 'desc';
+    console.log("desc");
+  } else {
+    asc = 'asc';
+    console.log("asc");
+  }
+//console.log(asc);
   //grab the class name of the clicked header div
   var currentSortColumn = $(this).attr('id');
   console.log(currentSortColumn);
   //grab the outer div containing the rows of data
   var outerDiv = $('#song-List');
-  console.log(outerDiv);
+//  console.log(outerDiv);
   outerDiv.find('div.row').sort(function(a, b) {
     if (asc) {
         return $('div.' + currentSortColumn, a).data("value").toString()
@@ -71,10 +78,10 @@ Trackster.renderTracks = function(tracks) {
     '      <i class="fa fa-play-circle-o fa-2x"></i>' +
     '    </a>' +
     '  </div>' +
-    '  <div class="col-xs-4 song-title" href="#">' + track.name + '</div>' +
-    '  <div class="col-xs-2 song-artist" href="#">' + track.artist + '</div>' +
+    '  <div class="col-xs-4 song-title" href="#" data-value="' + track.name + '">' + track.name + '</div>' +
+    '  <div class="col-xs-2 song-artist" href="#" data-value="' + track.artist + '">' + track.artist + '</div>' +
     '  <div class="col-xs-2 song-art" href="#"><img src="' + mediumAlbumArt + '"/></div>' +
-    '  <div class="col-xs-2 song-listen" href="#">' + track.listeners + '</div>' +
+    '  <div class="col-xs-2 song-listen" href="#" data-value="' + track.listeners + '">' + track.listeners + '</div>' +
     '</div>';
     $songList.append(songHTML);
 //    console.log(track);
